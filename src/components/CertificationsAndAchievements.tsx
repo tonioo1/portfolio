@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { playClick, playPop } from '../utils/sound';
-import { X } from 'lucide-react';
+import { X, ZoomIn } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface CertificateItem {
@@ -94,40 +94,65 @@ export const CertificationsAndAchievements: React.FC = () => {
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white to-transparent pointer-events-none" />
       </div>
 
-      {/* Container constrained to right side (middle to right, compact size) */}
+      {/* Container: compact on mobile, expansive and bold on PC */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-lg md:max-w-xl ml-auto my-auto flex flex-col items-end text-right"
+        className="relative z-10 w-full max-w-[290px] sm:max-w-md md:max-w-2xl lg:max-w-[55vw] ml-auto my-auto flex flex-col items-end text-right"
       >
         
         {/* Section Heading */}
-        <div className="mb-5 flex flex-col items-end text-right">
+        <div className="mb-4 sm:mb-6 flex flex-col items-end text-right">
           <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-zinc-950 tracking-tight">
             Certifications and Achievements
           </h2>
           <p className="text-xs sm:text-sm font-mono text-zinc-400 mt-1">
-            Click any certificate to inspect in full view
+            <span className="md:hidden">Click any certificate to inspect in full view</span>
+            <span className="hidden md:inline">Hover to view title · Click to inspect full certificate</span>
           </p>
         </div>
 
-        {/* Clean 3x2 Collage Grid */}
-        <div className="w-full grid grid-cols-3 gap-2 sm:gap-3 py-2 px-1">
+        {/* 3x2 Collage Grid: compact on mobile, expansive on PC with hover on desktop */}
+        <div className="w-full grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 py-1 sm:py-2">
           {CERTIFICATES_DATA.map((cert) => (
             <div
               key={cert.id}
               onClick={() => handleCardClick(cert)}
-              className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-200/90 shadow-2xs hover:border-zinc-900 bg-zinc-100 cursor-pointer transition-colors"
+              className="group relative aspect-[4/3] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border border-zinc-200/90 shadow-2xs md:hover:shadow-2xl md:hover:scale-110 md:hover:z-30 transition-all duration-300 ease-out bg-zinc-100 cursor-pointer origin-center"
             >
               {/* Certificate Image */}
               <img
                 src={cert.image}
                 alt={cert.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out md:group-hover:scale-110"
                 loading="lazy"
               />
+
+              {/* Hover Overlay: ACTIVE ON PC ONLY (hidden on mobile) */}
+              <div className="hidden md:flex absolute inset-0 bg-black/80 text-white p-3 sm:p-4 flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-xs text-right pointer-events-none">
+                
+                {/* Top: subtle zoom indicator */}
+                <div className="flex items-center justify-start">
+                  <span className="p-1.5 rounded-full bg-white/10 text-white/90">
+                    <ZoomIn className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+
+                {/* Center: Title Description */}
+                <div className="my-auto">
+                  <h4 className="font-display font-bold text-sm sm:text-base text-white tracking-tight leading-snug">
+                    {cert.title}
+                  </h4>
+                </div>
+
+                {/* Bottom: Date */}
+                <div className="pt-2 border-t border-white/10 text-[10px] font-mono text-zinc-400">
+                  <span>{cert.date}</span>
+                </div>
+
+              </div>
             </div>
           ))}
         </div>

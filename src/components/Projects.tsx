@@ -77,10 +77,10 @@ export const Projects: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full md:max-w-[50vw] ml-auto my-auto flex flex-col items-end text-right"
+        className="relative z-10 w-full md:max-w-[56vw] lg:max-w-[60vw] ml-auto my-auto flex flex-col items-end text-right"
       >
         {/* Section Heading */}
-        <div className="mb-8 flex flex-col items-end text-right">
+        <div className="mb-6 sm:mb-8 flex flex-col items-end text-right">
           <h2 className="font-display font-bold text-4xl sm:text-6xl text-zinc-950 tracking-tight">
             Projects
           </h2>
@@ -89,8 +89,8 @@ export const Projects: React.FC = () => {
           </p>
         </div>
 
-        {/* Stacked Cards Bundle Container */}
-        <div className="relative w-full aspect-[16/10] max-w-xl pb-2">
+        {/* Stacked Cards Bundle Container (Enlarged on PC) */}
+        <div className="relative w-full aspect-[16/10] max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl pb-2">
           <AnimatePresence initial={false} mode="popLayout">
             {projects.map((project, index) => {
               const isTop = index === 0;
@@ -190,7 +190,7 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Stack Controls & Actions */}
-        <div className="flex items-center justify-between w-full max-w-xl mt-5 pt-3 border-t border-zinc-100 text-xs font-mono text-zinc-400">
+        <div className="flex items-center justify-between w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mt-5 pt-3 border-t border-zinc-100 text-xs font-mono text-zinc-400">
           <div className="flex items-center gap-2">
             <span className="text-[11px] text-zinc-500">
               Active: <strong className="text-zinc-900">{projects[0].title}</strong>
