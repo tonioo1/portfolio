@@ -56,7 +56,7 @@ export const SectionNav: React.FC = () => {
   return (
     <nav
       aria-label="Section navigation"
-      className="fixed left-4 sm:left-8 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 pointer-events-auto select-none"
+      className="fixed left-4 sm:left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3 pointer-events-auto select-none"
     >
       {SECTIONS.map((sec) => {
         const isActive = activeSection === sec.id;

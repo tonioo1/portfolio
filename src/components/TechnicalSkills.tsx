@@ -146,9 +146,11 @@ export const TechnicalSkills: React.FC = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover object-center opacity-90"
+          className="w-full h-full object-cover object-center opacity-45 sm:opacity-90"
           src="/assets/aistudio/1029_1__922d9d5d.mp4"
         />
+        {/* Mobile lighter wash for crisp legibility */}
+        <div className="absolute inset-0 bg-white/30 sm:hidden pointer-events-none" />
         {/* Soft edge blend into the white background */}
         <div className="absolute inset-y-0 right-0 w-32 sm:w-44 bg-gradient-to-r from-transparent to-white pointer-events-none" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent pointer-events-none" />

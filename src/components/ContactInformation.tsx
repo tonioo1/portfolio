@@ -39,9 +39,11 @@ export const ContactInformation: React.FC = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover object-center opacity-90"
+          className="w-full h-full object-cover object-center opacity-45 sm:opacity-90 scale-125 origin-center"
           src="/assets/aistudio/Untitled_video__4__55a8eebf.mp4"
         />
+        {/* Mobile lighter wash for crisp legibility */}
+        <div className="absolute inset-0 bg-white/30 sm:hidden pointer-events-none" />
         {/* Soft edge blend into the white background */}
         <div className="absolute inset-y-0 right-0 w-32 sm:w-44 bg-gradient-to-r from-transparent to-white pointer-events-none" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent pointer-events-none" />
@@ -56,22 +58,22 @@ export const ContactInformation: React.FC = () => {
         className="relative z-10 max-w-3xl ml-auto w-full my-auto flex flex-col items-end text-right"
       >
         {/* Main Title */}
-        <div className="mb-6 text-right">
-          <h2 className="font-display font-bold text-4xl sm:text-6xl text-zinc-950 tracking-tight">
+        <div className="mb-5 text-right">
+          <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-zinc-950 tracking-tight leading-tight">
             You’ve Reached The End, <br />
             Or The Beginning.
           </h2>
-          <p className="text-sm sm:text-lg font-mono text-zinc-400 mt-1">
+          <p className="text-xs sm:text-sm font-mono text-zinc-400 mt-1">
             Contact Information
           </p>
         </div>
 
         {/* Email & Details closer to each other */}
-        <div className="space-y-1.5 mb-4 text-right">
+        <div className="space-y-1 mb-4 text-right">
           <div>
             <a
               href={`mailto:${PERSONAL_INFO.contacts.email}`}
-              className="font-display font-bold text-2xl sm:text-4xl text-zinc-900 hover:text-zinc-600 transition-colors inline-block"
+              className="font-display font-bold text-base sm:text-2xl md:text-3xl text-zinc-900 hover:text-zinc-600 transition-colors inline-block tracking-tight"
             >
               {PERSONAL_INFO.contacts.email}
             </a>
@@ -79,7 +81,7 @@ export const ContactInformation: React.FC = () => {
           <div>
             <a
               href={`tel:${PERSONAL_INFO.contacts.mobile.replace(/\s+/g, '')}`}
-              className="font-display font-semibold text-lg sm:text-2xl text-zinc-700 hover:text-black transition-colors inline-block"
+              className="font-display font-medium text-xs sm:text-base md:text-lg text-zinc-600 hover:text-black transition-colors inline-block"
             >
               {PERSONAL_INFO.contacts.mobile}
             </a>
@@ -153,12 +155,12 @@ export const ContactInformation: React.FC = () => {
           <span>Back to Top</span>
         </button>
 
-        <div className="flex flex-col items-end text-right order-1 sm:order-2 space-y-1">
-          <span>© {new Date().getFullYear()} {PERSONAL_INFO.name} · BS Computer Science 4th Year</span>
-          <span className="text-[11px] text-zinc-500">
+        <div className="flex flex-col items-end text-right order-1 sm:order-2 space-y-0.5">
+          <span className="text-[10px] sm:text-xs">© {new Date().getFullYear()} {PERSONAL_INFO.name} · BS Computer Science 4th Year</span>
+          <span className="text-[9px] sm:text-[11px] text-zinc-500">
             Design Inspiration: Anurag Bandyopadhyay (Cartooneast)
           </span>
-          <span className="text-[10px] text-zinc-400">
+          <span className="text-[8px] sm:text-[10px] text-zinc-400">
             Portfolio design inspired by the visual style and user experience of Cartooneast.
           </span>
         </div>

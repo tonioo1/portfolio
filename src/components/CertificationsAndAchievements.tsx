@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { playClick, playPop } from '../utils/sound';
-import { X, ZoomIn } from 'lucide-react';
+import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface CertificateItem {
@@ -83,9 +83,11 @@ export const CertificationsAndAchievements: React.FC = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover object-center opacity-90"
+          className="w-full h-full object-cover object-center opacity-45 sm:opacity-90"
           src="/assets/aistudio/Untitled_video__3__ad0af0ef.mp4"
         />
+        {/* Mobile lighter wash for crisp legibility */}
+        <div className="absolute inset-0 bg-white/30 sm:hidden pointer-events-none" />
         {/* Soft edge blend into the white background */}
         <div className="absolute inset-y-0 right-0 w-32 sm:w-44 bg-gradient-to-r from-transparent to-white pointer-events-none" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent pointer-events-none" />
@@ -103,53 +105,29 @@ export const CertificationsAndAchievements: React.FC = () => {
         
         {/* Section Heading */}
         <div className="mb-5 flex flex-col items-end text-right">
-          <h2 className="font-display font-bold text-4xl sm:text-6xl text-zinc-950 tracking-tight">
+          <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-zinc-950 tracking-tight">
             Certifications and Achievements
           </h2>
           <p className="text-xs sm:text-sm font-mono text-zinc-400 mt-1">
-            Hover image to zoom & view title · Click to inspect full certificate
+            Click any certificate to inspect in full view
           </p>
         </div>
 
-        {/* Compact 3x2 Collage Grid with Hover Zoom-In */}
+        {/* Clean 3x2 Collage Grid */}
         <div className="w-full grid grid-cols-3 gap-2 sm:gap-3 py-2 px-1">
           {CERTIFICATES_DATA.map((cert) => (
             <div
               key={cert.id}
               onClick={() => handleCardClick(cert)}
-              className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-200/90 group shadow-2xs hover:shadow-2xl hover:scale-115 hover:z-30 transition-all duration-300 ease-out bg-zinc-100 cursor-pointer origin-center"
+              className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-200/90 shadow-2xs hover:border-zinc-900 bg-zinc-100 cursor-pointer transition-colors"
             >
-              {/* Certificate Image with inner zoom */}
+              {/* Certificate Image */}
               <img
                 src={cert.image}
                 alt={cert.title}
-                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
-
-              {/* Hover Overlay: Description inside image's border (Title only) */}
-              <div className="absolute inset-0 bg-black/80 text-white p-3 sm:p-4 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-xs text-right">
-                
-                {/* Top: subtle zoom indicator only (top-right text removed) */}
-                <div className="flex items-center justify-start">
-                  <span className="p-1.5 rounded-full bg-white/10 text-white/90">
-                    <ZoomIn className="h-3.5 w-3.5" />
-                  </span>
-                </div>
-
-                {/* Center: Title Description Only */}
-                <div className="my-auto">
-                  <h4 className="font-display font-bold text-sm sm:text-base text-white tracking-tight leading-snug">
-                    {cert.title}
-                  </h4>
-                </div>
-
-                {/* Bottom: Date */}
-                <div className="pt-2 border-t border-white/10 text-[10px] font-mono text-zinc-400">
-                  <span>{cert.date}</span>
-                </div>
-
-              </div>
             </div>
           ))}
         </div>
